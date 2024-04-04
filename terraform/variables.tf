@@ -4,6 +4,11 @@ variable "resource_group_location" {
   description = "Location of the resource group."
 }
 
+variable "resource_group_name" {
+  description = "The name of the resource group"
+  type        = string
+}
+
 variable "resource_group_name_prefix" {
   type        = string
   default     = "rg"
