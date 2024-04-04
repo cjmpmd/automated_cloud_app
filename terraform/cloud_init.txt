@@ -6,7 +6,7 @@ runcmd:
 
   # Repository logic: installation and repo cloning
   - apt install -y git >> /var/log/cloud-init-output.log 2>&1
-  - git clone -b app_development https://github.com/jesusfberrios/automated_cloud_app.git /home/azureadmin/automated_cloud_app >> /var/log/cloud-init-output.log 2>&1
+  - git clone https://github.com/jesusfberrios/automated_cloud_app.git /home/azureadmin/automated_cloud_app >> /var/log/cloud-init-output.log 2>&1
 
   # Bash: Grant executable permissions for dependencies installation
   - chown -R azureadmin:azureadmin /home/azureadmin/automated_cloud_app >> /var/log/cloud-init-output.log 2>&1
