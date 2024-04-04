@@ -6,16 +6,14 @@ runcmd:
 
   # Repository logic: installation and repo cloning
   - apt install -y git >> /var/log/cloud-init-output.log 2>&1
-  - git clone https://github.com/jesusfberrios/cloud_app.git /home/project_user/cloud_app >> /var/log/cloud-init-output.log 2>&1
+  - git clone -b app_development https://github.com/jesusfberrios/automated_cloud_app.git /home/azureadmin/automated_cloud_app >> /var/log/cloud-init-output.log 2>&1
 
   # Bash: Grant executable permissions for dependencies installation
-  - chmod +x /home/project_user/cloud_app/initialization/simple_bash.sh >> /var/log/cloud-init-output.log 2>&1
-  - /home/project_user/cloud_app/initialization/simple_bash.sh >> /var/log/cloud-init-output.log 2>&1
-  - chown -R project_user:project_user /home/project_user/cloud_app >> /var/log/cloud-init-output.log 2>&1
-  - chmod +x /home/project_user/cloud_app/initialization/install_reqs.sh
-  - cd /home/project_user/cloud_app/initialization
+  - chown -R azureadmin:azureadmin /home/azureadmin/automated_cloud_app >> /var/log/cloud-init-output.log 2>&1
+  - chmod +x /home/azureadmin/automated_cloud_app/app/initialization/install_reqs.sh
+  - cd /home/azureadmin/automated_cloud_app/app/initialization
   - ./install_reqs.sh
-  - cd /home/project_user/cloud_app
+  - cd /home/azureadmin/automated_cloud_app/app/main
 
   # Run Streamlit application on the background
-  - nohup streamlit run main/app.py >> log.out &
+  - nohup streamlit run app.py >> log.out &
