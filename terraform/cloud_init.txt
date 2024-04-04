@@ -13,7 +13,7 @@ runcmd:
   - chmod +x /home/azureadmin/automated_cloud_app/app/initialization/install_reqs.sh
   - cd /home/azureadmin/automated_cloud_app/app/initialization
   - ./install_reqs.sh
-  - cd /home/azureadmin/automated_cloud_app/app
+  - cd /home/azureadmin/automated_cloud_app/app/main
 
   # Run Streamlit application on the background
-  - nohup streamlit run main/app.py >> log.out &
+  - nohup streamlit run app.py >> log.out &

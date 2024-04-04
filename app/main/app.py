@@ -53,17 +53,14 @@ def main():
     
     # # Execute SQL statement and get the result as a DataFrame
     # df = execute_sql_statement(sql_statement)
-    df = pd.read_csv('../initialization/population_gender.csv')
+    df = pd.read_csv('../initialization/population_ages.csv')
     df.sort_values('order',inplace=True)
-    df = df[df.group==gender].copy()
+    df = df[df.gender==gender].copy()
     
     # Plot the data using Plotly
     fig = go.Figure()
     fig.add_trace(go.Bar(x=df['age_range'], y=df['population'], name='Population'))
-    fig.update_layout(title='Population by Age Range', xaxis_title='Age Range', yaxis_title='Population', height=300)
-
-    # Specify x-axis tick values to show only integer years
-    fig.update_xaxes(tickmode='array', tickvals=df['year'].unique(), tickformat='d')
+    fig.update_layout(title='Population Distribution by Age Range', xaxis_title='Age Range', yaxis_title='Population', height=300)
     
     # Display the Plotly line plot
     st.plotly_chart(fig)
