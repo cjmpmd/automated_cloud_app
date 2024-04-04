@@ -149,20 +149,6 @@ resource "azurerm_linux_virtual_machine" "my_terraform_vm" {
   boot_diagnostics {
     storage_account_uri = azurerm_storage_account.my_storage_account.primary_blob_endpoint
   }
-  
-    provisioner "remote-exec" {
-    inline = [
-      # "chmod 0400 private_key.pem",
-      "sudo apt-get update",
-      # "sudo apt-get install -y nginx",
-      # "sudo systemctl start nginx"
-    ]
+  }
 
-    connection {
-      type        = "ssh"
-      user        = "your_ssh_username"
-      private_key = file("private_key.pem")
-      host        = self.public_ip_address
-    }
-    }
-}
+  
