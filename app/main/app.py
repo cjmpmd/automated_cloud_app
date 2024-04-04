@@ -3,7 +3,6 @@ import pandas as pd
 from sqlalchemy import create_engine, text
 import os
 import plotly.graph_objs as go
-from azure.storage.blob import BlobServiceClient
 from io import BytesIO
 from PIL import Image
 
