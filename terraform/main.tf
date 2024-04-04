@@ -4,8 +4,8 @@ resource "random_pet" "rg_name" {
 
 resource "azurerm_resource_group" "rg" {
   location = var.resource_group_location
-  # name     = random_pet.rg_name.id
-  name     = var.resource_group_name
+  name     = random_pet.rg_name.id
+  # name     = var.resource_group_name
 }
 
 # Create virtual network
@@ -117,7 +117,7 @@ resource "azurerm_storage_account" "my_storage_account" {
 
 # Create virtual machine
 resource "azurerm_linux_virtual_machine" "my_terraform_vm" {
-  name                  = "myVM"
+  name                  = var.vm_name
   location              = azurerm_resource_group.rg.location
   resource_group_name   = azurerm_resource_group.rg.name
   network_interface_ids = [azurerm_network_interface.my_terraform_nic.id]
@@ -149,4 +149,20 @@ resource "azurerm_linux_virtual_machine" "my_terraform_vm" {
   boot_diagnostics {
     storage_account_uri = azurerm_storage_account.my_storage_account.primary_blob_endpoint
   }
+  
+    provisioner "remote-exec" {
+    inline = [
+      # "chmod 0400 private_key.pem",
+      "sudo apt-get update",
+      # "sudo apt-get install -y nginx",
+      # "sudo systemctl start nginx"
+    ]
+
+    connection {
+      type        = "ssh"
+      user        = "your_ssh_username"
+      private_key = file("private_key.pem")
+      host        = self.public_ip_address
+    }
+    }
 }

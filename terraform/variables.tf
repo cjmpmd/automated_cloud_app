@@ -20,3 +20,9 @@ variable "username" {
   description = "The username for the local account that will be created on the new VM."
   default     = "azureadmin"
 }
+
+variable "vm_name" {
+  description = "The name of the virtual machine"
+  type        = string
+  # default     = "myVM"  # Provide a default value or remove it if you want users to always specify a value
+}
