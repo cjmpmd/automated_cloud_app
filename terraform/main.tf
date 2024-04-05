@@ -65,11 +65,35 @@ resource "azurerm_network_security_group" "my_terraform_nsg" {
   security_rule {
     name                       = "allow8501outbound"
     priority                   = 1002
-    direction                  = "Inbound"
+    direction                  = "Outbound"
     access                     = "Allow"
     protocol                   = "Tcp"
     source_port_range          = "*"
     destination_port_range     = "8501"
+    source_address_prefix      = "*"
+    destination_address_prefix = "*"
+  }
+
+  security_rule {
+    name                       = "allow19999inbound"
+    priority                   = 1003
+    direction                  = "Inbound"
+    access                     = "Allow"
+    protocol                   = "Tcp"
+    source_port_range          = "*"
+    destination_port_range     = "19999"
+    source_address_prefix      = "*"
+    destination_address_prefix = "*"
+  }
+
+  security_rule {
+    name                       = "allow19999outbound"
+    priority                   = 1004
+    direction                  = "Outbound"
+    access                     = "Allow"
+    protocol                   = "Tcp"
+    source_port_range          = "*"
+    destination_port_range     = "19999"
     source_address_prefix      = "*"
     destination_address_prefix = "*"
   }
