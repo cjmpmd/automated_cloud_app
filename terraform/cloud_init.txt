@@ -19,7 +19,7 @@ runcmd:
   - nohup streamlit run app.py >> log.out &
 
   # Install netdata
-  - wget -O /tmp/netdata-kickstart.sh -y https://get.netdata.cloud/kickstart.sh >> /var/log/cloud-init-output.log 2>&1
+  - wget -O /tmp/netdata-kickstart.sh https://get.netdata.cloud/kickstart.sh >> /var/log/cloud-init-output.log 2>&1
   - sh /tmp/netdata-kickstart.sh --no-updates >> /var/log/cloud-init-output.log 2>&1
   - sudo systemctl start netdata >> /var/log/cloud-init-output.log 2>&1
   - sudo systemctl enable netdata >> /var/log/cloud-init-output.log 2>&1
